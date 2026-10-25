@@ -45,5 +45,5 @@ variable "private_subnets" {
 # NAT = payant (~1,20 $/jour), on peut la couper sans tout casser
 variable "enable_nat" {
   type    = bool
-  default = true
+  default = false
 }
