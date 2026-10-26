@@ -47,3 +47,16 @@ variable "enable_nat" {
   type    = bool
   default = false
 }
+
+# --- S3 ---
+
+# noms uniques au monde, vérifiés avec "aws s3api head-bucket"
+variable "site_bucket_name" {
+  type    = string
+  default = "mmotors-site-bucket" # public, site statique
+}
+
+variable "docs_bucket_name" {
+  type    = string
+  default = "mmotors-docs-bucket" # privé, dossiers clients
+}
