@@ -60,3 +60,31 @@ variable "docs_bucket_name" {
   type    = string
   default = "mmotors-docs-bucket" # privé, dossiers clients
 }
+
+# --- base de données (RDS PostgreSQL) ---
+
+variable "db_instance_class" {
+  type    = string
+  default = "db.t4g.micro" # la plus petite, suffisante pour l'ECF
+}
+
+variable "db_engine_version" {
+  type    = string
+  default = "16" # PostgreSQL imposé par l'architecte
+}
+
+variable "db_name" {
+  type    = string
+  default = "mmotors" # base créée vide, prête pour la migration
+}
+
+variable "db_username" {
+  type    = string
+  default = "mmotors_admin" # le mot de passe, lui, est géré par AWS
+}
+
+# 7 jours de sauvegardes auto -> couvre le RPO de 24h
+variable "db_backup_retention" {
+  type    = number
+  default = 7
+}
