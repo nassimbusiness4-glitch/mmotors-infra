@@ -88,3 +88,22 @@ variable "db_backup_retention" {
   type    = number
   default = 7
 }
+
+# --- VM de dev (EC2) ---
+
+# ton IP, la valeur est dans terraform.tfvars (pas sur GitHub)
+variable "my_ip" {
+  type = string
+  sensitive = true # masquée dans les plans et les logs
+}
+
+variable "ec2_instance_type" {
+  type    = string
+  default = "t3.micro" # petite VM, suffisante pour du dev
+}
+
+# clé publique créée avec ssh-keygen (la privée reste sur le PC)
+variable "ssh_public_key_path" {
+  type    = string
+  default = "~/.ssh/mmotors-dev.pub"
+}
