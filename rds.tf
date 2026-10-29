@@ -6,18 +6,19 @@ resource "aws_db_subnet_group" "main" {
   subnet_ids = aws_subnet.private[*].id
 }
 
-# pare-feu de la base : seul le port PostgreSQL, et seulement depuis le VPC
+# pare-feu de la base : seul le port PostgreSQL, depuis ECS et la VM de dev
 resource "aws_security_group" "rds" {
   name        = "${var.project}-rds-sg"
-  description = "Acces PostgreSQL depuis le VPC uniquement"
+  description = "Acces PostgreSQL depuis ECS et la VM de dev"
   vpc_id      = aws_vpc.main.id
 
+  # seuls ECS et la VM de dev ont accès à la base
   ingress {
-    description = "PostgreSQL depuis le VPC"
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr] # on resserrera sur ECS au bloc 5
+    description     = "PostgreSQL depuis ECS et la VM de dev"
+    from_port       = 5432
+    to_port         = 5432
+    protocol        = "tcp"
+    security_groups = [aws_security_group.ecs.id, aws_security_group.ec2_dev.id]
   }
 }
 

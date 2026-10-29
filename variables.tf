@@ -45,7 +45,7 @@ variable "private_subnets" {
 # NAT = payant (~1,20 $/jour), on peut la couper sans tout casser
 variable "enable_nat" {
   type    = bool
-  default = false
+  default = true # nécessaire pour que les conteneurs ECS puissent télécharger des images depuis Docker Hub
 }
 
 # --- S3 ---
@@ -93,7 +93,7 @@ variable "db_backup_retention" {
 
 # ton IP, la valeur est dans terraform.tfvars (pas sur GitHub)
 variable "my_ip" {
-  type = string
+  type      = string
   sensitive = true # masquée dans les plans et les logs
 }
 
@@ -106,4 +106,25 @@ variable "ec2_instance_type" {
 variable "ssh_public_key_path" {
   type    = string
   default = "~/.ssh/mmotors-dev.pub"
+}
+
+# --- application (ECS) ---
+
+# image temporaire pour valider ECS + ALB, 
+# galerie publique AWS -> pas de limite de téléchargement comme Docker Hub
+variable "app_image" {
+  type    = string
+  default = "public.ecr.aws/nginx/nginx:latest"
+}
+
+# port du conteneur (nginx = 80)
+variable "app_port" {
+  type    = number
+  default = 80
+}
+
+# 2 tâches pour tenir la charge et survivre à une panne
+variable "app_desired_count" {
+  type    = number
+  default = 2
 }
