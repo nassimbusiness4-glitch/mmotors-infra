@@ -17,3 +17,7 @@ output "db_endpoint" {
 output "dev_vm_ip" {
   value = aws_instance.dev.public_ip
 }
+
+output "ecr_url" {
+  value = aws_ecr_repository.app.repository_url
+}
