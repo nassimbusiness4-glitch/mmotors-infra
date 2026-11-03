@@ -59,6 +59,9 @@ resource "aws_ecs_task_definition" "app" {
   memory                   = 512
   execution_role_arn       = aws_iam_role.ecs_execution.arn
 
+  # Le badge de l'appli : il peut lire les docs dans le bucket privé
+  task_role_arn = aws_iam_role.ecs_task.arn
+
   container_definitions = jsonencode([{
     name         = "app"
     image        = var.app_image
