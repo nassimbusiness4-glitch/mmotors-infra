@@ -1,0 +1,83 @@
+data.aws_caller_identity.current: Reading...
+aws_ecr_repository.app: Refreshing state... [id=mmotors-app]
+data.aws_caller_identity.current: Read complete after 0s [id=852128327436]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_user.github will be created
+  + resource "aws_iam_user" "github" {
+      + arn           = (known after apply)
+      + force_destroy = false
+      + id            = (known after apply)
+      + name          = "mmotors-github-actions"
+      + path          = "/"
+      + tags_all      = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + unique_id     = (known after apply)
+    }
+
+  # aws_iam_user_policy.github will be created
+  + resource "aws_iam_user_policy" "github" {
+      + id          = (known after apply)
+      + name        = "mmotors-github-deploy"
+      + name_prefix = (known after apply)
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = "ecr:GetAuthorizationToken"
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "ecr:BatchCheckLayerAvailability",
+                          + "ecr:BatchGetImage",
+                          + "ecr:InitiateLayerUpload",
+                          + "ecr:UploadLayerPart",
+                          + "ecr:CompleteLayerUpload",
+                          + "ecr:PutImage",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:ecr:eu-west-3:852128327436:repository/mmotors-app"
+                    },
+                  + {
+                      + Action   = [
+                          + "ecs:UpdateService",
+                          + "ecs:DescribeServices",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:ecs:eu-west-3:852128327436:service/mmotors-cluster/mmotors-app"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + user        = "mmotors-github-actions"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Warning: Resource targeting is in effect
+
+You are creating a plan with the -target option, which means that the result of
+this plan may not represent all of the changes requested by the current
+configuration.
+
+The -target option is not for routine use, and is provided only for exceptional
+situations such as recovering from errors or mistakes, or when Terraform
+specifically suggests to use it as part of an error message.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: bloc8.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "bloc8.tfplan"
