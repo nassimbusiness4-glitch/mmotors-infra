@@ -117,10 +117,10 @@ variable "app_image" {
   default = "public.ecr.aws/nginx/nginx:latest"
 }
 
-# port du conteneur (nginx = 80)
+# port de l'appli (FastAPI) 
 variable "app_port" {
   type    = number
-  default = 80
+  default = 8000
 }
 
 # 2 tâches pour tenir la charge et survivre à une panne
