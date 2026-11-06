@@ -50,7 +50,7 @@ resource "aws_security_group" "ecs" {
   }
 }
 
-# la recette du conteneur
+# la composition du conteneur
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.project}-app"
   network_mode             = "awsvpc"
@@ -63,8 +63,9 @@ resource "aws_ecs_task_definition" "app" {
   task_role_arn = aws_iam_role.ecs_task.arn
 
   container_definitions = jsonencode([{
-    name         = "app"
-    image        = var.app_image
+    name = "app"
+    # Mon image, envoyée sur ECR par le pipeline
+    image        = "${aws_ecr_repository.app.repository_url}:latest"
     essential    = true
     portMappings = [{ containerPort = var.app_port }]
 
