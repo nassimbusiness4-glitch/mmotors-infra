@@ -128,3 +128,9 @@ variable "app_desired_count" {
   type    = number
   default = 2
 }
+
+# Adresse e-mail qui reçoit les alertes (valeur dans terraform.tfvars, hors GitHub)
+variable "alert_email" {
+  type      = string
+  sensitive = true # masquée dans les plans et les logs
+}
