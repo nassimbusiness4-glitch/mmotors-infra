@@ -1,0 +1,282 @@
+data.aws_caller_identity.current: Reading...
+aws_ecs_cluster.main: Refreshing state... [id=arn:aws:ecs:eu-west-3:852128327436:cluster/mmotors-cluster]
+aws_iam_user.github: Refreshing state... [id=mmotors-github-actions]
+data.aws_ami.al2023: Reading...
+aws_vpc.main: Refreshing state... [id=vpc-0ddc7461a6bc36c92]
+aws_eip.nat[0]: Refreshing state... [id=eipalloc-09f18e3f2b8a6382f]
+aws_iam_role.ecs_execution: Refreshing state... [id=mmotors-ecs-execution-role]
+aws_ecr_repository.app: Refreshing state... [id=mmotors-app]
+aws_s3_bucket.site: Refreshing state... [id=mmotors-site-bucket]
+aws_iam_role.scheduler: Refreshing state... [id=mmotors-scheduler-role]
+data.aws_caller_identity.current: Read complete after 0s [id=852128327436]
+aws_cloudwatch_log_group.app: Refreshing state... [id=/ecs/mmotors-app]
+aws_iam_role.ecs_task: Refreshing state... [id=mmotors-ecs-task-role]
+aws_s3_bucket.docs: Refreshing state... [id=mmotors-docs-bucket]
+aws_key_pair.dev: Refreshing state... [id=mmotors-dev-key]
+aws_iam_user_policy.github: Refreshing state... [id=mmotors-github-actions:mmotors-github-deploy]
+data.aws_ami.al2023: Read complete after 1s [id=ami-052e5947e604d2d56]
+aws_iam_role_policy_attachment.ecs_execution: Refreshing state... [id=mmotors-ecs-execution-role/arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy]
+aws_ecs_task_definition.app: Refreshing state... [id=mmotors-app]
+aws_internet_gateway.igw: Refreshing state... [id=igw-0a915a964ee37108e]
+aws_security_group.alb: Refreshing state... [id=sg-09006ba7b82463b90]
+aws_lb_target_group.app: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-3:852128327436:targetgroup/mmotors-tg/85a5c5e6e4c56ff6]
+aws_route_table.private: Refreshing state... [id=rtb-09c2ea2766ad0ef26]
+aws_subnet.private[1]: Refreshing state... [id=subnet-0245041bc66fc809d]
+aws_security_group.ec2_dev: Refreshing state... [id=sg-0fce4d9ab7c3cf323]
+aws_subnet.private[0]: Refreshing state... [id=subnet-0904c925752403b04]
+aws_subnet.public[0]: Refreshing state... [id=subnet-09e0519d2d1e21faa]
+aws_subnet.public[1]: Refreshing state... [id=subnet-0fa924149acab2c6d]
+aws_s3_bucket_public_access_block.site: Refreshing state... [id=mmotors-site-bucket]
+aws_s3_object.index: Refreshing state... [id=mmotors-site-bucket/index.html]
+aws_s3_bucket_website_configuration.site: Refreshing state... [id=mmotors-site-bucket]
+aws_route_table.public: Refreshing state... [id=rtb-00e4f58a00c7ef55f]
+aws_security_group.ecs: Refreshing state... [id=sg-01b12f6d196d5a8ed]
+aws_s3_bucket_policy.site_public_read: Refreshing state... [id=mmotors-site-bucket]
+aws_db_subnet_group.main: Refreshing state... [id=mmotors-db-subnets]
+aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-04a10cfd40a9b4494]
+aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-0a9567fd74f7dc3d5]
+aws_lb.main: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-3:852128327436:loadbalancer/app/mmotors-alb/d31126e2f7d69e3a]
+aws_nat_gateway.nat[0]: Refreshing state... [id=nat-0aaea181fe2f6ba87]
+aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0b78788c07273cf7c]
+aws_instance.dev: Refreshing state... [id=i-0416f67696f56e161]
+aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0e198b0b846ff83db]
+aws_security_group.rds: Refreshing state... [id=sg-04d9f53276b5d2d7e]
+aws_route.private_nat[0]: Refreshing state... [id=r-rtb-09c2ea2766ad0ef261080289494]
+aws_s3_bucket_versioning.docs: Refreshing state... [id=mmotors-docs-bucket]
+aws_s3_bucket_server_side_encryption_configuration.docs: Refreshing state... [id=mmotors-docs-bucket]
+aws_s3_bucket_public_access_block.docs: Refreshing state... [id=mmotors-docs-bucket]
+aws_iam_role_policy.read_docs: Refreshing state... [id=mmotors-ecs-task-role:mmotors-read-docs]
+aws_db_instance.main: Refreshing state... [id=db-BFUB4A4QZRCB2TYSGR7KZX2YSY]
+aws_lb_listener.http: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-3:852128327436:listener/app/mmotors-alb/d31126e2f7d69e3a/d938e1143588e400]
+aws_ecs_service.app: Refreshing state... [id=arn:aws:ecs:eu-west-3:852128327436:service/mmotors-cluster/mmotors-app]
+aws_iam_role_policy.scheduler_ec2: Refreshing state... [id=mmotors-scheduler-role:start-stop-dev-vm]
+aws_scheduler_schedule.start_dev: Refreshing state... [id=default/mmotors-dev-start]
+aws_scheduler_schedule.stop_dev: Refreshing state... [id=default/mmotors-dev-stop]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_budgets_budget.mensuel will be created
+  + resource "aws_budgets_budget" "mensuel" {
+      + account_id        = (known after apply)
+      + arn               = (known after apply)
+      + budget_type       = "COST"
+      + id                = (known after apply)
+      + limit_amount      = "20"
+      + limit_unit        = "USD"
+      + name              = "mmotors-budget-mensuel"
+      + name_prefix       = (known after apply)
+      + tags_all          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + time_period_end   = "2087-06-15_00:00"
+      + time_period_start = (known after apply)
+      + time_unit         = "MONTHLY"
+
+      + cost_filter (known after apply)
+
+      + cost_types (known after apply)
+
+      + notification {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+      + notification {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+    }
+
+  # aws_cloudwatch_dashboard.main will be created
+  + resource "aws_cloudwatch_dashboard" "main" {
+      + dashboard_arn  = (known after apply)
+      + dashboard_body = (known after apply)
+      + dashboard_name = "mmotors-supervision"
+      + id             = (known after apply)
+      + region         = "eu-west-3"
+    }
+
+  # aws_cloudwatch_log_metric_filter.erreurs_app will be created
+  + resource "aws_cloudwatch_log_metric_filter" "erreurs_app" {
+      + apply_on_transformed_logs = (known after apply)
+      + id                        = (known after apply)
+      + log_group_name            = "/ecs/mmotors-app"
+      + name                      = "mmotors-erreurs-app"
+      + pattern                   = "ERROR"
+      + region                    = "eu-west-3"
+
+      + metric_transformation {
+          + name      = "ErreursApp"
+          + namespace = "MMotors/Application"
+          + unit      = "None"
+          + value     = "1"
+        }
+    }
+
+  # aws_cloudwatch_metric_alarm.ecs_cpu will be created
+  + resource "aws_cloudwatch_metric_alarm" "ecs_cpu" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "CPU des conteneurs ECS au-dessus de 80 %"
+      + alarm_name                            = "mmotors-ecs-cpu-eleve"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "ClusterName" = "mmotors-cluster"
+          + "ServiceName" = "mmotors-app"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/ECS"
+      + ok_actions                            = (known after apply)
+      + period                                = 300
+      + region                                = "eu-west-3"
+      + statistic                             = "Average"
+      + tags_all                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + threshold                             = 80
+      + treat_missing_data                    = "missing"
+    }
+
+  # aws_cloudwatch_metric_alarm.erreurs_app will be created
+  + resource "aws_cloudwatch_metric_alarm" "erreurs_app" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Erreurs trouvées dans les logs de l'appli"
+      + alarm_name                            = "mmotors-erreurs-dans-les-logs"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "ErreursApp"
+      + namespace                             = "MMotors/Application"
+      + ok_actions                            = (known after apply)
+      + period                                = 300
+      + region                                = "eu-west-3"
+      + statistic                             = "Sum"
+      + tags_all                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + threshold                             = 1
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # aws_cloudwatch_metric_alarm.rds_disque will be created
+  + resource "aws_cloudwatch_metric_alarm" "rds_disque" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Moins de 2 Go libres sur la base RDS"
+      + alarm_name                            = "mmotors-rds-disque-faible"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanThreshold"
+      + dimensions                            = {
+          + "DBInstanceIdentifier" = "mmotors-db"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "FreeStorageSpace"
+      + namespace                             = "AWS/RDS"
+      + ok_actions                            = (known after apply)
+      + period                                = 300
+      + region                                = "eu-west-3"
+      + statistic                             = "Minimum"
+      + tags_all                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + threshold                             = 2000000000
+      + treat_missing_data                    = "missing"
+    }
+
+  # aws_cloudwatch_metric_alarm.temps_reponse will be created
+  + resource "aws_cloudwatch_metric_alarm" "temps_reponse" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Temps de réponse moyen de l'appli au-dessus d'1 seconde"
+      + alarm_name                            = "mmotors-appli-lente"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "LoadBalancer" = "app/mmotors-alb/d31126e2f7d69e3a"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 2
+      + id                                    = (known after apply)
+      + metric_name                           = "TargetResponseTime"
+      + namespace                             = "AWS/ApplicationELB"
+      + ok_actions                            = (known after apply)
+      + period                                = 300
+      + region                                = "eu-west-3"
+      + statistic                             = "Average"
+      + tags_all                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + threshold                             = 1
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # aws_sns_topic.alerts will be created
+  + resource "aws_sns_topic" "alerts" {
+      + arn                         = (known after apply)
+      + beginning_archive_time      = (known after apply)
+      + content_based_deduplication = false
+      + fifo_throughput_scope       = (known after apply)
+      + fifo_topic                  = false
+      + id                          = (known after apply)
+      + maximum_message_size        = (known after apply)
+      + name                        = "mmotors-alertes"
+      + name_prefix                 = (known after apply)
+      + owner                       = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = "eu-west-3"
+      + signature_version           = (known after apply)
+      + tags_all                    = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "mmotors"
+        }
+      + tracing_config              = (known after apply)
+    }
+
+  # aws_sns_topic_subscription.email will be created
+  + resource "aws_sns_topic_subscription" "email" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = (sensitive value)
+      + endpoint_auto_confirms          = false
+      + filter_policy_scope             = (known after apply)
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "email"
+      + raw_message_delivery            = false
+      + region                          = "eu-west-3"
+      + topic_arn                       = (known after apply)
+    }
+
+Plan: 9 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: bloc10.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "bloc10.tfplan"
